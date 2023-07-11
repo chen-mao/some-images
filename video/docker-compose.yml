@@ -1,7 +1,7 @@
 version: '2.3'
 services:
   vlc-video-demo:
-    image: 172.18.25.248:5005/xdxgpu/vlc-video-sample:1.0.0-rc-1
+    image: 172.18.25.248:5005/xdxgpu/vlc-video-sample:1.0.0-Demo-rc-1
     environment:
       - DISPLAY=${DISPLAY}
       - XDG_RUNTIME_DIR=/var/tmp
