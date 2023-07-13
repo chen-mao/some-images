@@ -1,7 +1,7 @@
 version: '2.3'
 services:
   clinfo-demo:
-    image:  hub.xdxct.com/xdxct-docker/xdxgpu/clinfo-opencl-sample:1.0.0-Demo-rc-1:1.0.0-Demo-rc-1 
+    image:  hub.xdxct.com/xdxct-docker/xdxgpu/clinfo-opencl-sample:1.0.0-Demo-rc-1 
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=graphics,compute,utility
