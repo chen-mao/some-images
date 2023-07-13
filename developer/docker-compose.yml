@@ -1,0 +1,19 @@
+version: '2.3'
+services:
+  developer-demo:
+    image: hub.xdxct.com/xdxct-docker/xdxgpu/developer-sample:1.0.0-Demo-rc-1
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XDG_RUNTIME_DIR=/var/tmp
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute,video
+      - LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/xdxgpu/lib/x86_64-linux-gnu 
+    volumes:
+      - ${HOME}/media/:/tmp/content
+      - /var/run/dbus:/var/run/dbus:ro
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+      - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
+      - /tmp/.X11-unix:/tmp/.X11-unix  
+    command: bash
+    stdin_open: true
+    tty: true
