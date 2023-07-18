@@ -1,7 +1,7 @@
 version: '2.3'
 services:
   developer-demo:
-    image: hub.xdxct.com/xdxct-docker/xdxgpu/developer-sample:1.0.0-Demo-rc-1
+    image: hub.xdxct.com/xdxct-docker/xdxgpu/developer-sample:1.1.0-Demo-rc-1
     environment:
       - DISPLAY=${DISPLAY}
       - XDG_RUNTIME_DIR=/var/tmp
