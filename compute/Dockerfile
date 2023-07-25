@@ -15,4 +15,6 @@ RUN apt-get update \
     opencl-headers \
     clinfo \
   && rm -rf /var/lib/apt/lists/*
-  
+
+# 设置 EntryPoint
+ENTRYPOINT ["/bin/bash"]

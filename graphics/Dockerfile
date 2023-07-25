@@ -16,4 +16,7 @@ RUN apt-get update \
     libx11-6 \
     glmark2 \
   && rm -rf /var/lib/apt/lists/*
+
+# 设置 EntryPoint
+ENTRYPOINT ["/bin/bash"]
   
