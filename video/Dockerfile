@@ -11,3 +11,6 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*  
 
 RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
+
+# 设置 EntryPoint
+ENTRYPOINT ["/bin/bash"]

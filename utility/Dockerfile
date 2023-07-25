@@ -8,13 +8,8 @@ COPY sources.list /etc/apt/
 #Dependencies for glvnd and X11.
 RUN apt-get update \
   && apt-get install -y -qq --no-install-recommends \
-    vim \
-    make \
-    gdb \
-    build-essential \
-    opencl-headers \
-    clinfo \
+    python3 \
   && rm -rf /var/lib/apt/lists/*
 
 # 设置 EntryPoint
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]  
