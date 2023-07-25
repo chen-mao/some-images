@@ -16,10 +16,9 @@ The list of prerequisites for running Xdxct Container Toolkit is described below
 1. GNU/Linux x86_64 with kernel version > 3.10
 2. Docker >= 19.03,  (recommended, but some distributions may include older versions of Docker. The minimum supported version is 1.12)
 3. XDXCT driver >= 1.18.
-4. XDXSMI >= 1.13(静态编译).
 
 ### 步骤 
-1. 安装下列xdxct容器工具包- 
+1. 安装下列xdxct容器工具包 
 目录: test@172.18.25.248: ~/xdxct-docker/ubuntu20.04
 - libxdxct-container1_1.0.0~rc.1-0_amd64.deb       
 - libxdxct-container1-dbg_1.0.0~rc.1-0_amd64.deb   
@@ -28,7 +27,6 @@ The list of prerequisites for running Xdxct Container Toolkit is described below
 - xdxct-container-toolkit_1.0.0~rc.1-0_amd64.deb
 - xdxct-container-toolkit-base_1.0.0~rc.1-0_amd64.deb
 - xdxct-container-toolkit-operator-extensions_1.0.0~rc.1-0_amd64.deb
-- xdxsmi_1.3_all.deb(静态编译xdxsmi) 
 
 2. 设置harbor仓库的域名
 ```shell
@@ -64,17 +62,21 @@ docker login hub.xdxct.com
 Username: admin
 password: Harbor12345 
 ```
-2. 此时，可以通过运行基本 ubuntu 容器来测试xdxsmi
-```shell
-docker run --rm --gpus all hub.xdxct.com/xdxct-docker/ubuntu:20.04 xdxsmi
-```
-3. 验证其他
-3.1. 下载docker-compose 文件
+
+2. 下载docker-compose的文件
 ```shell
 git clone https://github.com/chen-mao/some-images.git
 ```
 
-3.2. Graphics的测试设置
+3. 此时，可以通过运行基本 ubuntu 容器来测试xdxsmi
+```shell
+docker run --rm --gpus all hub.xdxct.com/xdxct-docker/xdxgpu/xdxsmi-sample:1.0.0-Demo-rc-1 xdxsmi
+# 或者
+cd utility 
+docker-compose run xdxsmi-demo xdxsmi
+```
+
+4. Graphics的测试
 ```
 cd graphics
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
@@ -83,7 +85,7 @@ docker-compose run glmark2-demo bash      # 启动 glmark2-demo 服务
 glmark2                                   # 测试glmark2            
 ```
 
-3.3 video的测试设置
+5. video的测试
 由于测试video功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
 ```shell
 cd video
@@ -93,7 +95,7 @@ docker-compose run vlc-video-demo bash    # 启动 vlc-video-demo 服务
 vlc --no-audio test.mp4                   # 测试视频播放            
 ```
 
-3.4. Compute的测试设置
+6. Compute的测试
 ```shell 
 cd compute 
 docker-compose run opencl-demo bash       # 启动 opencl-demo 服务
