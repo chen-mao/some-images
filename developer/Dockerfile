@@ -22,6 +22,10 @@ RUN apt-get update \
     opencl-headers \
     clinfo \
     openssh-server \
+    python3 \
  && rm -rf /var/lib/apt/lists/*  
 
 RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
+
+# 设置 EntryPoint
+ENTRYPOINT ["/bin/bash"]
