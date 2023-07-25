@@ -1,0 +1,10 @@
+version: '2.3'
+services:
+  xdxsmi-demo:
+    image:  hub.xdxct.com/xdxct-docker/xdxgpu/xdxsmi-sample:1.0.0-Demo-rc-1 
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=utility
+    command: bash
+    stdin_open: true
+    tty: true
