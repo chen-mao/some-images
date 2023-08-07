@@ -17,7 +17,7 @@ The list of prerequisites for running Xdxct Container Toolkit is described below
 2. Docker >= 19.03,  (recommended, but some distributions may include older versions of Docker. The minimum supported version is 1.12)
 3. XDXCT driver >= 1.18.
 
-### 步骤 ([测试video player](./VideoReadme.md))
+### 步骤 
 1. 安装下列xdxct容器工具包 
 目录: test@172.18.25.248: ~/xdxct-docker/ubuntu20.04
 - libxdxct-container1_1.0.0~rc.1-0_amd64.deb       
@@ -85,27 +85,17 @@ docker-compose run glmark2-demo           # 启动 glmark2-demo 服务
 glmark2                                   # 测试glmark2            
 ```
 
-5. vlc的测试
-由于测试vlc播放器功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
+5. video的测试
+由于测试video功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
 ```shell
-cd vlc
+cd video
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
 docker-compose run vlc-video-demo         # 启动 vlc-video-demo 服务
 # 进入容器
 vlc --no-audio test.mp4                   # 测试视频播放            
 ```
 
-6. mpv的测试设置
-由于测试mpv播放器功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
-```shell
-cd mpv
-xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
-docker-compose run mpv-video-demo         # 启动 mpv-video-demo 服务
-# 进入容器
-mpv --no-audio test.mp4                   # 测试视频播放            
-```
-
-7. Compute的测试
+6. Compute的测试
 ```shell 
 cd compute 
 docker-compose run opencl-demo            # 启动 opencl-demo 服务
