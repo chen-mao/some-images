@@ -73,14 +73,14 @@ git clone https://github.com/chen-mao/some-images.git
 docker run --rm --gpus all hub.xdxct.com/xdxct-docker/xdxgpu/xdxsmi-sample:1.0.0-Demo-rc-1 xdxsmi
 # 或者
 cd utility 
-docker-compose run xdxsmi-demo xdxsmi
+docker-compose run xdxsmi-demo
 ```
 
 4. Graphics的测试
 ```
 cd graphics
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
-docker-compose run glmark2-demo bash      # 启动 glmark2-demo 服务
+docker-compose run glmark2-demo           # 启动 glmark2-demo 服务
 # 进入容器
 glmark2                                   # 测试glmark2            
 ```
@@ -90,7 +90,7 @@ glmark2                                   # 测试glmark2
 ```shell
 cd video
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
-docker-compose run vlc-video-demo bash    # 启动 vlc-video-demo 服务
+docker-compose run vlc-video-demo         # 启动 vlc-video-demo 服务
 # 进入容器
 vlc --no-audio test.mp4                   # 测试视频播放            
 ```
@@ -98,7 +98,7 @@ vlc --no-audio test.mp4                   # 测试视频播放
 6. Compute的测试
 ```shell 
 cd compute 
-docker-compose run opencl-demo bash       # 启动 opencl-demo 服务
+docker-compose run opencl-demo            # 启动 opencl-demo 服务
 # 进入容器
 clinfo                                    # 列出当前系统上支持的OpenCL平台和设备    
 ```

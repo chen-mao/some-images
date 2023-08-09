@@ -9,6 +9,5 @@ services:
     volumes:
       - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
       - /tmp/.X11-unix:/tmp/.X11-unix 
-    command: bash
     stdin_open: true
     tty: true
