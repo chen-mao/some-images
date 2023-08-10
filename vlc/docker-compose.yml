@@ -13,6 +13,5 @@ services:
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
       - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
       - /tmp/.X11-unix:/tmp/.X11-unix  
-    command:
     stdin_open: true
     tty: true
