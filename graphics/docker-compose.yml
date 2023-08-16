@@ -1,11 +1,9 @@
-version: '2.3'
+version: '3'
 services:
   glmark2-demo:
     image: hub.xdxct.com/xdxct-docker/xdxgpu/glmark2-sample:1.0.0-Demo-rc-1
     environment:
       - DISPLAY=${DISPLAY}
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=graphics,compute 
     volumes:
       - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
       - /tmp/.X11-unix:/tmp/.X11-unix

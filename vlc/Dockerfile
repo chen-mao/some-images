@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
+
 ENV LANG C.UTF-8
+ENV XDXCT_VISIBLE_DEVICES=all
+ENV XDXCT_DRIVER_CAPABILITIES=graphics,compute,video
 
 WORKDIR /tmp/content
 
