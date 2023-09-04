@@ -1,7 +1,7 @@
 version: '3'
 services:
   vulkan-demo:
-    image: hub.xdxct.com/xdxct-docker/vulkun:latest
+    image: hub.xdxct.com/xdxct-docker/vulkan:latest
     environment:
       - XDG_RUNTIME_DIR=run/user/1000
       - DISPLAY=${DISPLAY}
