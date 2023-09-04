@@ -80,7 +80,7 @@ docker-compose run xdxsmi-demo
 ```
 cd graphics/opengl
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
-docker-compose run opengl-demo            # 启动 vulkan-demo 服务
+docker-compose run opengl-demo            # 启动 opengl-demo 服务
 # 进入容器
 glmark2                                   # 测试glmark2            
 ```
