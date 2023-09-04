@@ -17,7 +17,7 @@ The list of prerequisites for running Xdxct Container Toolkit is described below
 2. Docker >= 19.03,  (recommended, but some distributions may include older versions of Docker. The minimum supported version is 1.12)
 3. XDXCT driver >= 1.18.
 
-### 步骤 ([测试video player](./VideoReadme.md))
+### 步骤
 1. 安装下列xdxct容器工具包 
 目录: test@172.18.25.248: ~/xdxct-docker/ubuntu20.04
 - libxdxct-container1_1.0.0~rc.1-0_amd64.deb       

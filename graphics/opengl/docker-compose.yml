@@ -1,7 +1,7 @@
 version: '3'
 services:
-  glmark2-demo:
-    image: hub.xdxct.com/xdxct-docker/xdxgpu/glmark2-sample:1.0.0-Demo-rc-1
+  opengl-demo:
+    image: hub.xdxct.com/xdxct-docker/opengl-sample:latest
     environment:
       - DISPLAY=${DISPLAY}
     volumes:
@@ -9,3 +9,4 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
     stdin_open: true
     tty: true
+    command: bash
