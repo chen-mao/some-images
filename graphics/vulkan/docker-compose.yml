@@ -1,0 +1,14 @@
+version: '3'
+services:
+  glmark2-demo:
+    image: hub.xdxct.com/xdxct-docker/vulkun:latest
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+      - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
+      - ${PWD}/xdxgpu_icd.json:/etc/vulkan/icd.d/xdxgpu_icd.json
+    stdin_open: true
+    tty: true
+    command: bash

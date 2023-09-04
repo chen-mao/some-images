@@ -76,16 +76,26 @@ cd utility
 docker-compose run xdxsmi-demo
 ```
 
-4. Graphics的测试
+4. OpenGL的测试
 ```
-cd graphics
+cd graphics/opengl
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
-docker-compose run glmark2-demo           # 启动 glmark2-demo 服务
+docker-compose run opengl-demo            # 启动 vulkan-demo 服务
 # 进入容器
 glmark2                                   # 测试glmark2            
 ```
 
-5. vlc的测试
+5. vulkan的测试
+```
+cd graphics/vulkan
+xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
+docker-compose run vulkan-demo            # 启动 vulkan-demo 服务
+# 进入容器
+vulkaninfo
+```
+
+
+6. vlc的测试
 由于测试vlc播放器功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
 ```shell
 cd vlc
@@ -95,7 +105,7 @@ docker-compose run vlc-video-demo         # 启动 vlc-video-demo 服务
 vlc --no-audio test.mp4                   # 测试视频播放            
 ```
 
-6. mpv的测试设置
+7. mpv的测试设置
 由于测试mpv播放器功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
 ```shell
 cd mpv
@@ -105,7 +115,7 @@ docker-compose run mpv-video-demo         # 启动 mpv-video-demo 服务
 mpv --no-audio test.mp4                   # 测试视频播放            
 ```
 
-7. Compute的测试
+8. Compute的测试
 ```shell 
 cd compute 
 docker-compose run opencl-demo            # 启动 opencl-demo 服务
