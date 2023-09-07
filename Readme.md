@@ -70,10 +70,12 @@ git clone https://github.com/chen-mao/some-images.git
 
 3. 此时，可以通过运行基本 ubuntu 容器来测试xdxsmi
 ```shell
-docker run --rm --gpus all hub.xdxct.com/xdxct-docker/xdxgpu/xdxsmi-sample:1.0.0-Demo-rc-1 xdxsmi
+docker run --rm hub.xdxct.com/xdxct-docker/xdxsmi-sample:latest xdxsmi
 # 或者
 cd utility 
 docker-compose run xdxsmi-demo
+# 进入容器
+xdxsmi                                   # 测试xdxsmi  
 ```
 
 4. OpenGL的测试
@@ -92,8 +94,9 @@ xhost +local:docker                       # 启用 Docker 容器连接到本地 
 docker-compose run vulkan-demo            # 启动 vulkan-demo 服务
 # 进入容器
 vulkaninfo
+# 运行
+vkcube
 ```
-
 
 6. vlc的测试
 由于测试vlc播放器功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。

@@ -12,7 +12,7 @@ push-latest:
 
 clean:
 	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/xdxsmi-sample:latest
-	$(DOCKER) rmi vulkan-sample:latest
+	$(DOCKER) rmi xdxsmi-sample:latest
 
 ubuntu:
 	$(DOCKER) build --pull -t \
