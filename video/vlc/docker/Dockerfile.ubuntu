@@ -1,17 +1,20 @@
-FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
+ARG BASE_DIST
+
+FROM ${BASE_DIST}
 
 ENV LANG C.UTF-8
 ENV XDXCT_VISIBLE_DEVICES=all
 ENV XDXCT_DRIVER_CAPABILITIES=graphics,compute,video
 
-WORKDIR /tmp/content
+WORKDIR /tmp
 
 COPY sources.list /etc/apt/
 
-ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
- && apt-get install -y --no-install-recommends mpv \
+ && apt-get install -y --no-install-recommends vlc \
  && rm -rf /var/lib/apt/lists/*  
 
-# 设置 EntryPoint
+RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
+
 ENTRYPOINT ["/bin/bash"]

@@ -101,7 +101,7 @@ vkcube
 6. vlc的测试
 由于测试vlc播放器功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
 ```shell
-cd vlc
+cd video/vlc
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
 docker-compose run vlc-video-demo         # 启动 vlc-video-demo 服务
 # 进入容器
@@ -111,14 +111,24 @@ vlc --no-audio test.mp4                   # 测试视频播放
 7. mpv的测试设置
 由于测试mpv播放器功能, 需要准备好测试的视频。请将测试的视频放在~/media目录中。
 ```shell
-cd mpv
+cd video/mpv
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
 docker-compose run mpv-video-demo         # 启动 mpv-video-demo 服务
 # 进入容器
 mpv --no-audio test.mp4                   # 测试视频播放            
 ```
 
-8. Compute的测试
+8. ffmpeg的测试
+请将测试的视频放在~/media目录中, 目前支持软件解码和vaapi硬件解码
+```shell
+cd video/ffmpeg
+xhost +local:docker
+docker-compose run ffmpeg-demo              # 启用容器
+vainfo                                      # 查看vaapi是否可用
+ffmpeg -hwaccel vaapi -i test.mp4 test.mkv  # 测试视频转换
+```
+
+9. Compute的测试
 ```shell 
 cd compute 
 docker-compose run opencl-demo            # 启动 opencl-demo 服务
