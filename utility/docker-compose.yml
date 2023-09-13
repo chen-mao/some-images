@@ -3,7 +3,6 @@ services:
   xdxsmi-demo:
     image: hub.xdxct.com/xdxct-docker/xdxsmi-sample:latest 
     environment:
-      - XDXCT_VISIBLE_DEVICES=all
       - XDXCT_DRIVER_CAPABILITIES=utility
     stdin_open: true
     tty: true
