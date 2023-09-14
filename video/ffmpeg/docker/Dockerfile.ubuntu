@@ -1,14 +1,7 @@
 ARG DEBIAN_FRONTEND=noninteractive
 ARG BASE_DIST
 
-FROM ${BASE_DIST}
-# --* 
-ENV LANG C.UTF-8
-ENV XDXCT_VISIBLE_DEVICES=all
-ENV XDXCT_DRIVER_CAPABILITIES=graphics,compute,video
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/xdxgpu/lib/x86_64-linux-gnu
-ENV LIBVA_DRIVERS_PATH=/usr/lib/x86_64-linux-gnu/dri
-ENV LIBVA_DRIVER_NAME=xdxgpu
+FROM ${BASE_DIST} AS builder
 
 WORKDIR /tmp
 
@@ -25,3 +18,14 @@ RUN tar -xI "xz -T0" -f ffmpeg.txz \
         && cd .. \
         && rm -rf ffmpeg
 
+FROM ${BASE_DIST}
+ENV LANG C.UTF-8
+ENV XDXCT_VISIBLE_DEVICES=all
+ENV XDXCT_DRIVER_CAPABILITIES=graphics,compute,video
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/xdxgpu/lib/x86_64-linux-gnu
+ENV LIBVA_DRIVERS_PATH=/usr/lib/x86_64-linux-gnu/dri
+ENV LIBVA_DRIVER_NAME=xdxgpu
+
+WORKDIR /tmp
+
+COPY --from=builder / /
