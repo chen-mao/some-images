@@ -9,6 +9,7 @@ services:
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
       - /var/run/dbus:/var/run/dbus:ro
       - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
-      - /tmp/.X11-unix:/tmp/.X11-unix  
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${HOME}/media:/tmp/video:ro
     stdin_open: true
     tty: true
