@@ -1,7 +1,8 @@
 version: '3'
 services:
-  vlc-video-demo:
-    image: hub.xdxct.com/xdxct-docker/xdxgpu/vlc-video-sample:1.0.0-Demo-rc-1
+  mpv-video-demo:
+    image: hub.xdxct.com/xdxct-docker/xdxgpu/mpv-video-sample:latest
+    runtime: xdxct
     environment:
       - DISPLAY=${DISPLAY}
       - XDG_RUNTIME_DIR=/var/tmp
@@ -10,6 +11,6 @@ services:
       - /var/run/dbus:/var/run/dbus:ro
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
       - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
-      - /tmp/.X11-unix:/tmp/.X11-unix  
+      - /tmp/.X11-unix:/tmp/.X11-unix
     stdin_open: true
     tty: true
