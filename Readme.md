@@ -42,7 +42,7 @@ cat > /etc/docker/daemon.json <<-EOF
     "runtimes": {
         "xdxct": {
             "args": [],
-            "path": "nvidia-container-runtime"
+            "path": "xdxct-container-runtime"
         }
     }
 }
