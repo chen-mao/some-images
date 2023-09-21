@@ -2,9 +2,8 @@ DOCKER   ?= docker
 REGISTRY ?= hub.xdxct.com
 PROJECT  ?= xdxct-docker
 BASE    ?= ubuntu:20.04
-# /*- NOTICE -*/
-# When you run the make command for the first time, 
-# invoke the download.sh script to download the project zip file
+HELPER	?= jrottenberg/ffmpeg:4.1-vaapi
+
 .PHONY: all
 all: ubuntu
 
@@ -20,5 +19,5 @@ ubuntu:
 	$(DOCKER) build --pull -t \
 		ffmpeg-sample:latest \
 		--build-arg BASE_DIST=$(BASE) \
+		--build-arg HELPER_DIST=$(HELPER) \
 	    --file docker/Dockerfile.ubuntu .
-
