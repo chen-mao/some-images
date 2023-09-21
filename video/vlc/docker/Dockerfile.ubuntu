@@ -20,4 +20,4 @@ RUN apt-get update \
 RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
 
 RUN echo "pulseaudio --start 2>/dev/null" >> /root/.bashrc
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
