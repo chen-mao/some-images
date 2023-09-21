@@ -14,9 +14,10 @@ WORKDIR /tmp
 COPY sources.list /etc/apt/
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends vlc \
+ && apt-get install -y --no-install-recommends vlc dbus-x11 pulseaudio \
  && rm -rf /var/lib/apt/lists/*  
 
 RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
 
+RUN echo "pulseaudio --start 2>/dev/null" >> /root/.bashrc
 ENTRYPOINT ["/bin/bash"]
