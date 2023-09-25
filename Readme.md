@@ -21,7 +21,7 @@ The list of prerequisites for running Xdxct Container Toolkit is described below
 两种方式安装toolkit,使用容器安装和deb包安装。  
 法一容器化安装：
 ```bash
-docker run --runtime runc --privileged -it --pid=host \
+docker run --privileged -it --pid=host \
 -v /etc/docker:/etc/docker \
 -v /usr/local/xdxct:/usr/local/xdxct \
 -v /var/run:/var/run \
