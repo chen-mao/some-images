@@ -18,7 +18,7 @@ The list of prerequisites for running Xdxct Container Toolkit is described below
 3. XDXCT driver >= 1.18.
 
 ### 安装
-两种方式安装toolkit,使用容器安装和deb包安装。
+两种方式安装toolkit,使用容器安装和deb包安装。  
 法一容器化安装：
 ```bash
 docker run --runtime runc --privileged -it --pid=host \
