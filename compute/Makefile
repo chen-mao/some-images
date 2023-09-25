@@ -8,15 +8,15 @@ BASE    ?= ubuntu20.04
 all: ubuntu
 
 push-latest:
-	$(DOCKER) tag  xdxsmi-sample:latest $(REGISTRY)/$(PROJECT)/xdxsmi-sample:latest
-	$(DOCKER) push $(REGISTRY)/$(PROJECT)/xdxsmi-sample:latest
+	$(DOCKER) tag  clinfo-sample:latest $(REGISTRY)/$(PROJECT)/clinfo-sample:latest
+	$(DOCKER) push $(REGISTRY)/$(PROJECT)/clinfo-sample:latest
 
 clean:
-	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/xdxsmi-sample:latest
-	$(DOCKER) rmi xdxsmi-sample:latest
+	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/clinfo-sample:latest
+	$(DOCKER) rmi clinfo-sample:latest
 
 ubuntu:
 	$(DOCKER) build --pull -t \
-		xdxsmi-sample:latest \
+		clinfo-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file docker/Dockerfile.ubuntu .

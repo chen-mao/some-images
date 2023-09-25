@@ -1,7 +1,7 @@
 version: '3'
 services:
   clinfo-demo:
-    image: hub.xdxct.com/xdxct-docker/xdxgpu/clinfo-opencl-sample:1.0.0-Demo-rc-1 
+    image: hub.xdxct.com/xdxct-docker/clinfo-sample:latest
     environment:
       - XDXCT_DRIVER_CAPABILITIES=graphics,compute
     volumes:

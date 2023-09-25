@@ -1,7 +1,7 @@
 DOCKER   ?= docker
 REGISTRY ?= hub.xdxct.com
 PROJECT  ?= xdxct-docker
-BASE    ?= ubuntu:20.04
+BASE    ?= ubuntu20.04
 HELPER	?= jrottenberg/ffmpeg:4.1-vaapi
 
 .PHONY: all
@@ -18,6 +18,6 @@ clean:
 ubuntu:
 	$(DOCKER) build --pull -t \
 		ffmpeg-sample:latest \
-		--build-arg BASE_DIST=$(BASE) \
+		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 		--build-arg HELPER_DIST=$(HELPER) \
 	    --file docker/Dockerfile.ubuntu .

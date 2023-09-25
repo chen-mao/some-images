@@ -11,8 +11,6 @@ ENV LIBVA_DRIVER_NAME=xdxgpu
 
 WORKDIR /tmp
 
-COPY sources.list /etc/apt/
-
 RUN apt-get update \
  && apt-get install -y --no-install-recommends mpv \
  && rm -rf /var/lib/apt/lists/*  
