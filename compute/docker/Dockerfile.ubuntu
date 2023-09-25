@@ -1,13 +1,13 @@
-FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
+ARG BASE_DIST
+
+FROM ${BASE_DIST}
 
 ENV LANG C.UTF-8
 ENV XDXCT_VISIBLE_DEVICES=all
 ENV XDXCT_DRIVER_CAPABILITIES=graphics,compute
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/xdxgpu/lib/x86_64-linux-gnu
 
 WORKDIR /
-
-COPY sources.list /etc/apt/
 
 #Dependencies for glvnd and X11.
 RUN apt-get update \

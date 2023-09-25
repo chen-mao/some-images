@@ -5,15 +5,13 @@ FROM ${BASE_DIST}
 
 ENV LANG C.UTF-8
 ENV XDXCT_VISIBLE_DEVICES=all
-ENV XDXCT_DRIVER_CAPABILITIES=utility,graphics
+ENV XDXCT_DRIVER_CAPABILITIES=utility
 
 WORKDIR /
-
-COPY sources.list /etc/apt/
 
 RUN apt-get update \
   && apt-get install -y -qq --no-install-recommends \
     python3 \
   && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT [ "bash" ]
+ENTRYPOINT [ "/bin/bash" ]

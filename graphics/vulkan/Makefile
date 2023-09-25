@@ -1,7 +1,7 @@
 DOCKER   ?= docker
 REGISTRY ?= hub.xdxct.com
 PROJECT  ?= xdxct-docker
-BASE    ?= ubuntu:20.04
+BASE    ?= ubuntu20.04
 
 .PHONY: all
 all: ubuntu
@@ -17,6 +17,6 @@ clean:
 ubuntu:
 	$(DOCKER) build --pull -t \
 		vulkan-sample:latest \
-		--build-arg BASE_DIST=$(BASE) \
+		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file docker/Dockerfile.ubuntu .
 
