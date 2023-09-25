@@ -1,7 +1,7 @@
 version: '3'
 services:
   mpv-video-demo:
-    image: hub.xdxct.com/xdxct-docker/xdxgpu/mpv-video-sample:latest
+    image: hub.xdxct.com/xdxct-docker/mpv-video-sample:latest
     runtime: xdxct
     environment:
       - DISPLAY=${DISPLAY}

@@ -1,7 +1,7 @@
 version: '3'
 services:
   vlc-video-demo:
-    image: hub.xdxct.com/xdxct-docker/xdxgpu/vlc-video-sample:latest
+    image: hub.xdxct.com/xdxct-docker/vlc-video-sample:latest
     environment:
       - DISPLAY=${DISPLAY}
       - XDG_RUNTIME_DIR=/var/tmp

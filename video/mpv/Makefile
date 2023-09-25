@@ -1,18 +1,17 @@
 DOCKER   ?= docker
 REGISTRY ?= hub.xdxct.com
 PROJECT  ?= xdxct-docker
-SUBPROJECT ?= xdxgpu
 BASE    ?= ubuntu20.04
 
 .PHONY: all
 all: ubuntu
 
 push-latest:
-	$(DOCKER) tag  mpv-video-sample:latest $(REGISTRY)/$(PROJECT)/$(SUBPROJECT)/mpv-video-sample:latest
-	$(DOCKER) push $(REGISTRY)/$(PROJECT)/$(SUBPROJECT)/mpv-video-sample:latest
+	$(DOCKER) tag  mpv-video-sample:latest $(REGISTRY)/$(PROJECT)/mpv-video-sample:latest
+	$(DOCKER) push $(REGISTRY)/$(PROJECT)/mpv-video-sample:latest
 
 clean:
-	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/$(SUBPROJECT)/mpv-video-sample:latest
+	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/mpv-video-sample:latest
 	$(DOCKER) rmi mpv-video-sample:latest
 
 ubuntu:
