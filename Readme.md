@@ -106,7 +106,7 @@ cd video/vlc
 xhost +local:docker                       # 启用 Docker 容器连接到本地 X 服务器的权限
 docker-compose run vlc-video-demo         # 启动 vlc-video-demo 服务
 # 进入容器
-vlc --no-audio --avcodec-hw=vaapi test.mp4                   # 测试视频播放            
+vlc --no-audio --avcodec-hw=vaapi --no-qt-privacy-ask test.mp4      # 测试视频播放            
 ```
 
 6. mpv的测试设置

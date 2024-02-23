@@ -9,3 +9,13 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix 
     stdin_open: true
     tty: true
+  clinfo-cdi:
+    image: hub.xdxct.com/xdxct-docker/clinfo-sample:latest
+    environment:
+      - XDXCT_DRIVER_CAPABILITIES=graphics,compute
+      - XDXCT_VISIBLE_DEVICES=xdxct.com/gpu=all
+    volumes:
+      - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    stdin_open: true
+    tty: true

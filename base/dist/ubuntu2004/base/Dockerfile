@@ -20,3 +20,7 @@ ENV LD_LIBRARY_PATH=/opt/xdxgpu/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}
 # xdxct-container-runtime
 ENV XDXCT_VISIBLE_DEVICES all
 ENV XDXCT_DRIVER_CAPABILITIES compute,utility
+
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends libpciaccess-dev \
+ 	&& rm -rf /var/lib/apt/lists/*

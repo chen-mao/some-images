@@ -5,6 +5,7 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
       - XDG_RUNTIME_DIR=/var/tmp
+      - XDXCT_VISIBLE_DEVICES=xdxct.com/gpu=all
     volumes:
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
       - /var/run/dbus:/var/run/dbus:ro

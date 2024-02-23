@@ -16,7 +16,7 @@ clean:
 	$(DOCKER) rmi xdxsmi-sample:latest
 
 ubuntu:
-	$(DOCKER) build --pull -t \
+	$(DOCKER) build -t \
 		xdxsmi-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file docker/Dockerfile.ubuntu .

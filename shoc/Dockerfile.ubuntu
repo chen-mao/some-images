@@ -1,0 +1,36 @@
+
+ARG BASE_DIST
+
+FROM ${BASE_DIST} as builder
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gcc 
+    vim \
+    g++ \
+    make \
+    python3 \
+    ocl-icd-opencl-dev \
+    opencl-headers && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY SHOC /shoc
+
+RUN bash /shoc/install_shoc.sh
+
+FROM ${BASE_DIST}
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /shoc
+
+COPY xdxgpu_icd.json /etc/vulkan/icd.d/
+COPY --from=builder /shoc/shoc_study /shoc/shoc_study
+COPY --from=builder /shoc/run_shoc.sh /shoc/
+COPY --from=builder /shoc/Setup_shoc.ini /shoc/
+
+ENTRYPOINT [ "/bin/bash" ]

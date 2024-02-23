@@ -1,0 +1,16 @@
+version: '3'
+services:
+  gputest-demo:
+    image: hub.xdxct.com/xdxct-docker/gputest-sample:latest
+    environment:
+      - XDG_RUNTIME_DIR=run/user/1000
+      - DISPLAY=${DISPLAY}
+      - XDXCT_VISIBLE_DEVICES=xdxct.com/gpu=all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+      - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
+      - ${PWD}/xdxgpu_icd.json:/etc/vulkan/icd.d/xdxgpu_icd.json
+    stdin_open: true
+    tty: true
+    command: bash

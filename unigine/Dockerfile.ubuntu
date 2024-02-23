@@ -1,0 +1,39 @@
+
+ARG BASE_DIST
+
+FROM ${BASE_DIST} as builder
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY unigine /unigine
+WORKDIR /unigine
+
+RUN bash /unigine/install_unigine.sh
+
+FROM ${BASE_DIST}
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /unigine
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    pciutils \
+    python2 \
+    libxrandr2 \
+    libxinerama1 \
+    mesa-utils && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY xdxgpu_icd.json /etc/vulkan/icd.d/
+COPY --from=builder /unigine/Unigine_Heaven-4.0-Enterprise /unigine/Unigine_Heaven-4.0-Enterprise
+COPY --from=builder /unigine/Unigine_Superposition-1.1 /unigine/Unigine_Superposition-1.1
+COPY --from=builder /unigine/Unigine_Valley-1.0-Enterprise /unigine/Unigine_Valley-1.0-Enterprise
+COPY --from=builder /unigine/run_unigine.sh /unigine/
+COPY --from=builder /unigine/Setup_unigine.ini /unigine/
+COPY --from=builder /unigine/heaven.py /unigine/
+COPY --from=builder /unigine/valley.py /unigine/
+
+ENTRYPOINT [ "/bin/bash" ]

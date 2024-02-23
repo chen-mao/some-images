@@ -1,0 +1,51 @@
+
+ARG BASE_DIST
+
+FROM ${BASE_DIST} as builder
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+#Dependencies for glvnd and Xcb.
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    cmake \
+    unzip \
+    clinfo \
+    gcc \
+    vim \
+    g++ \
+    make \
+    python3 \
+    vulkan-tools \
+    ocl-icd-opencl-dev \
+    opencl-headers && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY geekbench5 /geekbench5
+
+WORKDIR geekbench5
+
+RUN bash /geekbench5/install_geekbench.sh
+
+FROM ${BASE_DIST}
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /geekbench5
+
+RUN apt-get update && \
+    apt-get install -y vulkan-tools && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY xdxgpu_icd.json /etc/vulkan/icd.d/
+COPY --from=builder /geekbench5/Geekbench-5.4.4-Linux /geekbench5/Geekbench-5.4.4-Linux
+COPY --from=builder /geekbench5/run_geekbench_active.sh /geekbench5/
+COPY --from=builder /geekbench5/install_geekbench.sh /geekbench5/
+COPY --from=builder /geekbench5/Setup_geekbench.ini /geekbench5/
+
+RUN /geekbench5/install_geekbench.sh 2>&1 >> /dev/null
+RUN rm /geekbench5/install_geekbench.sh
+
+ENTRYPOINT [ "/bin/bash" ]

@@ -1,0 +1,44 @@
+
+ARG BASE_DIST
+
+FROM ${BASE_DIST}
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /gfxbench
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    libvulkan1 \
+    libghc-x11-dev \
+    mesa-common-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    vulkan-utils \
+    libvulkan-dev \
+    bison \
+    ocl-icd-opencl-dev \
+    libxrandr-dev \
+    xorg-dev \
+    mesa-vulkan-drivers \
+    pciutils \
+    python3 \
+    libxi6 \
+    libxrandr2 \
+    libxinerama1 \
+    libxcursor1 \
+    libxxf86vm1 && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY xdxgpu_icd.json /etc/vulkan/icd.d/
+
+COPY gfxbench/*.ini /gfxbench/
+COPY gfxbench/run_*.sh /gfxbench/
+COPY gfxbench/stress_*.sh /gfxbench/
+COPY gfxbench/json2csv_v2.1.py /gfxbench/
+COPY gfxbench/gfxbench_gl-src-5.0.5.1+corporate /gfxbench/gfxbench_gl-src-5.0.5.1+corporate
+COPY gfxbench/gfxbench_vulkan-src-5.0.5.1+corporate /gfxbench/gfxbench_vulkan-src-5.0.5.1+corporate
+COPY gfxbench/stress_*.sh /gfxbench/
+
+ENTRYPOINT [ "/bin/bash" ]

@@ -1,0 +1,11 @@
+*.zip
+*.blob
+*.guess
+*.run
+*.tar
+*.tar.gz
+*.tar.bz2
+benchmark.md
+docker-test.py
+/**/gfxbench/
+.shaders/

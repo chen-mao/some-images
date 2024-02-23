@@ -1,0 +1,63 @@
+
+ARG BASE_DIST
+
+FROM ${BASE_DIST} as builder
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    cmake \
+    unzip \
+    clinfo \
+    gcc \
+    vim \
+    g++ \
+    make \
+    python3 \
+    libx11-dev \
+    libgl1-mesa-dev \
+    pciutils \
+    ocl-icd-opencl-dev \
+    opencl-headers
+
+COPY unixbench /unixbench
+WORKDIR /unixbench
+
+# RUN chmod +x /tmp/SHOC/install_shoc.sh && \
+RUN bash /unixbench/install_unixbench.sh
+
+FROM ${BASE_DIST}
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+ENV LC_ALL zh_CN.UTF-8
+
+WORKDIR /unixbench
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    pciutils \
+    mesa-utils \
+    systemd-sysv \
+    expect \
+    build-essential \
+    make \
+    locales \
+    x11-apps && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen zh_CN.UTF-8
+
+COPY xdxgpu_icd.json /etc/vulkan/icd.d/
+COPY --from=builder /unixbench/UnixBench_5.1.3-master /unixbench/UnixBench_5.1.3-master
+COPY --from=builder /unixbench/x11perf-1.5 /unixbench/x11perf-1.5
+COPY --from=builder /unixbench/config.guess /unixbench/
+COPY --from=builder /unixbench/run_unixbench.sh /unixbench/
+COPY --from=builder /unixbench/run_x11perf.sh /unixbench/
+COPY --from=builder /unixbench/Setup_unixbench.ini /unixbench/
+COPY --from=builder /unixbench/Setup_x11perf.ini /unixbench/
+COPY --from=builder /unixbench/stress_x11perf.sh /unixbench/
+
+ENTRYPOINT [ "/bin/bash" ]

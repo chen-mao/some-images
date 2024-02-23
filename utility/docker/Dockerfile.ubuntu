@@ -12,6 +12,7 @@ WORKDIR /
 RUN apt-get update \
   && apt-get install -y -qq --no-install-recommends \
     python3 \
+    libpciaccess-dev \
   && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT [ "/bin/bash" ]

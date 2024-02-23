@@ -1,0 +1,13 @@
+version: '3'
+services:
+  gfxbench-demo:
+    image: hub.xdxct.com/xdxct-docker/gfxbench-sample:latest
+    environment:
+      - XDG_RUNTIME_DIR=run/user/1000
+      - DISPLAY=${DISPLAY}
+      - XDXCT_VISIBLE_DEVICES=xdxct.com/gpu=all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+    stdin_open: true
+    tty: true
