@@ -15,7 +15,7 @@ LABEL maintainer "XDXCT CORPORATION"
 
 COPY sources.list /etc/apt/
 
-ENV LD_LIBRARY_PATH=/opt/xdxgpu/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}
+ENV LD_LIBRARY_PATH /opt/xdxgpu/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib64/xdxgpu:/usr/lib/aarch64-linux-gnu/xdxgpu:${LD_LIBRARY_PATH}
 
 # xdxct-container-runtime
 ENV XDXCT_VISIBLE_DEVICES all
