@@ -1,30 +1,28 @@
 DOCKER   ?= docker
 REGISTRY ?= hub.xdxct.com
 PROJECT  ?= xdxct-docker
+
 BASE    ?= ubuntu20.04
 
 .PHONY: all
 all: ubuntu
 
 push-latest:
-	$(DOCKER) push $(REGISTRY)/$(PROJECT)/clpeak-sample:latest
+	$(DOCKER) tag  clinfo-sample:latest $(REGISTRY)/$(PROJECT)/clinfo-sample:latest
+	$(DOCKER) push $(REGISTRY)/$(PROJECT)/clinfo-sample:latest
 
 clean:
-	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/clpeak-sample:latest
-	$(DOCKER) rmi clpeak-sample:latest
+	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/clinfo-sample:latest
+	$(DOCKER) rmi clinfo-sample:latest
 
-ubuntu: check
+ubuntu:
 	$(DOCKER) build --pull -t \
-		clpeak-sample:latest \
+		clinfo-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file Dockerfile.ubuntu .
-	$(DOCKER) tag  clpeak-sample:latest $(REGISTRY)/$(PROJECT)/clpeak-sample:latest
 
-buildx: check
+buildx:
 	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 -t \
-		$(REGISTRY)/$(PROJECT)/clpeak-sample:latest \
+		$(REGISTRY)/$(PROJECT)/clinfo-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file Dockerfile.ubuntu --push .
-
-check:
-	./check.sh

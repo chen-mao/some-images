@@ -1,0 +1,12 @@
+version: '3'
+services:
+  opengl-demo:
+    image: hub.xdxct.com/xdxct-docker/opengl-sample:latest
+    environment:
+      - DISPLAY=${DISPLAY}  
+    volumes:
+      - ${PWD}/10-xdxgpu.conf:/usr/share/X11/xorg.conf.d/10-xdxgpu.conf
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    stdin_open: true
+    tty: true
+    command: bash

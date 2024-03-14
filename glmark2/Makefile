@@ -19,5 +19,10 @@ ubuntu:
 		glmark-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file Dockerfile.ubuntu .
-	$(DOCKER) tag  glmark-sample:latest $(REGISTRY)/$(PROJECT)/glmark-sample:latest
+	$(DOCKER) tag glmark-sample:latest $(REGISTRY)/$(PROJECT)/glmark-sample:latest
 
+buildx:
+	$(DOCKER) buildx build --platform linux/amd64,linux/arm64 -t \
+		$(REGISTRY)/$(PROJECT)/glmark-sample:latest \
+		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
+	    --file Dockerfile.ubuntu . --push

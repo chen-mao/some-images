@@ -5,6 +5,9 @@
 *.tar
 *.tar.gz
 *.tar.bz2
+*.txz
+*.deb
+*.run
 benchmark.md
 docker-test.py
 /**/gfxbench/

@@ -1,0 +1,17 @@
+ARG DEBIAN_FRONTEND=noninteractive
+ARG BASE_DIST
+
+FROM ${BASE_DIST}
+
+ENV LANG C.UTF-8
+
+WORKDIR /
+
+RUN apt-get update \
+  && apt-get install -y -qq --no-install-recommends \
+    python3 \
+    libx11-dev \
+    libxext-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT [ "/bin/bash" ]

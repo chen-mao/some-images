@@ -14,10 +14,12 @@ clean:
 	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/gputest-sample:latest
 	$(DOCKER) rmi gputest-sample:latest
 
-ubuntu:
+ubuntu: check
 	$(DOCKER) build --pull -t \
 		gputest-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file Dockerfile.ubuntu .
 	$(DOCKER) tag  gputest-sample:latest $(REGISTRY)/$(PROJECT)/gputest-sample:latest
 
+check:
+	./check.sh

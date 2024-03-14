@@ -7,24 +7,22 @@ BASE    ?= ubuntu20.04
 all: ubuntu
 
 push-latest:
-	$(DOCKER) push $(REGISTRY)/$(PROJECT)/clpeak-sample:latest
+	$(DOCKER) tag  mpv-video-sample:latest $(REGISTRY)/$(PROJECT)/mpv-video-sample:latest
+	$(DOCKER) push $(REGISTRY)/$(PROJECT)/mpv-video-sample:latest
 
 clean:
-	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/clpeak-sample:latest
-	$(DOCKER) rmi clpeak-sample:latest
+	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/mpv-video-sample:latest
+	$(DOCKER) rmi mpv-video-sample:latest
 
-ubuntu: check
+ubuntu:
 	$(DOCKER) build --pull -t \
-		clpeak-sample:latest \
+		mpv-video-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file Dockerfile.ubuntu .
-	$(DOCKER) tag  clpeak-sample:latest $(REGISTRY)/$(PROJECT)/clpeak-sample:latest
 
-buildx: check
+buildx:
 	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 -t \
-		$(REGISTRY)/$(PROJECT)/clpeak-sample:latest \
+		$(REGISTRY)/$(PROJECT)/mpv-video-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file Dockerfile.ubuntu --push .
 
-check:
-	./check.sh

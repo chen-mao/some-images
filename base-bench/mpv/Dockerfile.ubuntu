@@ -1,0 +1,16 @@
+ARG DEBIAN_FRONTEND=noninteractive
+ARG BASE_DIST
+
+FROM ${BASE_DIST}
+
+ENV LANG C.UTF-8
+ENV LIBVA_DRIVER_NAME xdxgpu
+ENV XDG_RUNTIME_DIR /var/tmp
+
+WORKDIR /tmp
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends mpv \
+ && rm -rf /var/lib/apt/lists/*  
+
+ENTRYPOINT ["/bin/bash"]

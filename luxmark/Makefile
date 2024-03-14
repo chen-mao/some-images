@@ -14,10 +14,12 @@ clean:
 	$(DOCKER) rmi $(REGISTRY)/$(PROJECT)/luxmark-sample:latest
 	$(DOCKER) rmi luxmark-sample:latest
 
-ubuntu:
+ubuntu: check
 	$(DOCKER) build --pull -t \
 		luxmark-sample:latest \
 		--build-arg BASE_DIST=$(REGISTRY)/$(PROJECT)/ubuntu:base-$(BASE) \
 	    --file Dockerfile.ubuntu .
 	$(DOCKER) tag  luxmark-sample:latest $(REGISTRY)/$(PROJECT)/luxmark-sample:latest
 
+check:
+	./check.sh
